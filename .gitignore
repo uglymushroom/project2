@@ -3,3 +3,6 @@ node_modules
 npm-debug.log
 .env
 config/config.json
+
+# ignored package lock 
+package-lock.json

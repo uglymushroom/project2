@@ -11,9 +11,9 @@ module.exports = function(sequelize, Sequelize) {
 
         email: {
             type: Sequelize.STRING,
-            validate: {
-                isEmail: true
-            },
+            // validate: {
+            //     isEmail: true
+            // },
             allowNull: false
         },
 
@@ -89,12 +89,12 @@ module.exports = function(sequelize, Sequelize) {
         });
 
         User.hasMany(models.VanGroup, {
-            onDelete: "cascade",
-            foreignKey: "passenger_ID"
+            onDelete: "cascade"
+            // foreignKey: "passenger_ID"
         });
 
       };
 
     return User;
  
-}
+};

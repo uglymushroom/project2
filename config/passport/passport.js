@@ -1,12 +1,13 @@
  //load bcrypt module
- var bCrypt = require('bcrypt-nodejs');
+ var bCrypt = require("bcrypt");
 
- module.exports = function(passport,user){
+ module.exports = function(passport, user){
 
  var User = user;
- var LocalStrategy = require('passport-local').Strategy;
+ var LocalStrategy = require("passport-local").Strategy;
 
- console.log(new LocalStrategy)
+//  this wont work if there's no semicolon
+//  console.log(new LocalStrategy)
 
  passport.serializeUser(function(user, done) {
          done(null, user.id);
@@ -51,9 +52,10 @@
 
        var data =
        { email:email,
-       password:userPassword,
-       firstname: req.body.firstname,
-       lastname: req.body.lastname
+       password:userPassword
+      //  you didnt define this in your local strat so you can't use this
+      //  firstname: req.body.firstname,
+      //  lastname: req.body.lastname
        };
 
 
@@ -91,8 +93,11 @@
      if (!isValidPassword(user.password,password)) {
        return done(null, false, { message: 'Incorrect password.' });
      }
+// here missing else statement
+     else {
      var userinfo = user.get();
      return done(null,userinfo);
+     }
    }).catch(function(err){
      console.log("Error:",err);
      return done(null, false, { message: 'Something went wrong with your Signin' });
